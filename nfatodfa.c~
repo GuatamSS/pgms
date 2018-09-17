@@ -8,6 +8,17 @@ struct node{
 	bool isstart;
 } node;
 
+struct t{
+	int input;
+	char tostate[50];
+};
+struct State{
+	char name;
+	struct t trans[50];
+};
+
+struct State states[50];
+
 char table[50][50];
 int n1,n2,i,j;
 char inputsymbols[5][20];
@@ -26,17 +37,22 @@ int main(){
 		scanf("%s",inputsymbols[i]);
 	}
 
+
+	for(i=0;i<n1;i++){
+		//Create state;
+		strcpy(states[i].name,"q0");
+	}
 	//
 	for (i=0;i<n1;i++){
 		for(j=0;j<n2;j++){
+			int k=0;
 			printf("q%d----%s--->",i,inputsymbols[j]);
-			scanf(" %c",&table[i][j]);
+			scanf(" %c",&states[i].trans[j].tostate[k++]);
 		}
 
 	}
 	printtable();
 }
-
 printtable(){
 	printf("States\t");
 	for (i=0;i<n2;i++){
