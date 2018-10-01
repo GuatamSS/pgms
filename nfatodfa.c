@@ -10,7 +10,7 @@ struct node{
 
 struct t{
 	int input;
-	char tostate[50];
+	int tostate[10][10];
 };
 struct State{
 	char name[20];
@@ -45,9 +45,13 @@ int main(){
 	//
 	for (i=0;i<n1;i++){
 		for(j=0;j<n2;j++){
-			int k=0;
-			printf("q%d----%s--->",i,inputsymbols[j]);
-			scanf(" %c",&states[i].trans[j].tostate[k++]);
+			int k=0;int l=0;int *q;
+			do{
+				printf("q%d----%s--->",i,inputsymbols[j]);
+				int *q=states[i].trans[j].tostate[k++][l++];
+				scanf("%d",&q);
+				//printf("%d",q);
+			}while(q!=-1);
 		}
 
 	}
@@ -63,7 +67,7 @@ printtable(){
 		printf("%d\t",i);
 		for(j=0;j<n2;j++){
 			int k=0;
-			printf("%c\t",states[i].trans[j].tostate[k++]);
+			printf("%d\t",states[i].trans[j].tostate[k++][0]);
 		}
 		printf("\n");
 	}
