@@ -13,7 +13,7 @@ struct t{
 	char tostate[50];
 };
 struct State{
-	char name;
+	char name[20];
 	struct t trans[50];
 };
 
@@ -62,7 +62,8 @@ printtable(){
 	for (i=0;i<n1;i++){
 		printf("%d\t",i);
 		for(j=0;j<n2;j++){
-			printf("%c\t",table[i][j]);
+			int k=0;
+			printf("%c\t",states[i].trans[j].tostate[k++]);
 		}
 		printf("\n");
 	}
