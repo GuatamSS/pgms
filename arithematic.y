@@ -19,7 +19,7 @@ expr:expr'+'expr
 	|NUM
 	;
 %%
-
+#include "lex.yy.c"
 void main()
 {
 	printf("\nEnter Expression:");

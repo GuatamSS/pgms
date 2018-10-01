@@ -62,24 +62,12 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "tree.y" /* yacc.c:339  */
+#line 1 "arithematic.y" /* yacc.c:339  */
 
-#include <stdio.h>
-#include<string.h>
-typedef struct node
-{
-	struct node *left;
-	struct node *right;
-	char *token;
-} node;
+	#include<stdio.h>
+	int yyerror(char *a);
 
-
-node *mknode(node *left, node *right, char *token);
-void printtree(node *tree);
-
-#define YYSTYPE struct node *
-
-#line 83 "y.tab.c" /* yacc.c:339  */
+#line 71 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -97,10 +85,7 @@ void printtree(node *tree);
 # define YYERROR_VERBOSE 0
 #endif
 
-/* In a future release of Bison, this section will be replaced
-   by #include "y.tab.h".  */
-#ifndef YY_YY_Y_TAB_H_INCLUDED
-# define YY_YY_Y_TAB_H_INCLUDED
+
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -114,23 +99,13 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NUMBER = 258,
-    PLUS = 259,
-    MINUS = 260,
-    TIMES = 261,
-    LEFT_PARENTHESIS = 262,
-    RIGHT_PARENTHESIS = 263,
-    END = 264
+    ID = 258,
+    NUM = 259
   };
 #endif
 /* Tokens.  */
-#define NUMBER 258
-#define PLUS 259
-#define MINUS 260
-#define TIMES 261
-#define LEFT_PARENTHESIS 262
-#define RIGHT_PARENTHESIS 263
-#define END 264
+#define ID 258
+#define NUM 259
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -144,11 +119,11 @@ extern YYSTYPE yylval;
 
 int yyparse (void);
 
-#endif /* !YY_YY_Y_TAB_H_INCLUDED  */
+
 
 /* Copy the second part of user declarations.  */
 
-#line 152 "y.tab.c" /* yacc.c:358  */
+#line 127 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -388,23 +363,23 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  2
+#define YYFINAL  7
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   15
+#define YYLAST   19
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  10
+#define YYNTOKENS  11
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  6
+#define YYNNTS  3
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  11
+#define YYNRULES  9
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  18
+#define YYNSTATES  17
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   264
+#define YYMAXUTOK   259
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -417,6 +392,7 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
+       9,    10,     7,     5,     2,     6,     2,     8,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -437,17 +413,14 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9
+       2,     2,     2,     2,     2,     2,     1,     2,     3,     4
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    27,    27,    28,    30,    32,    33,    34,    36,    37,
-      39,    40
+       0,    12,    12,    13,    14,    15,    16,    17,    18,    19
 };
 #endif
 
@@ -456,9 +429,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "NUMBER", "PLUS", "MINUS", "TIMES",
-  "LEFT_PARENTHESIS", "RIGHT_PARENTHESIS", "END", "$accept", "lines",
-  "line", "exp", "term", "factor", YY_NULLPTR
+  "$end", "error", "$undefined", "ID", "NUM", "'+'", "'-'", "'*'", "'/'",
+  "'('", "')'", "$accept", "stmt", "expr", YY_NULLPTR
 };
 #endif
 
@@ -467,7 +439,8 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260,   261,   262,   263,   264
+       0,   256,   257,   258,   259,    43,    45,    42,    47,    40,
+      41
 };
 # endif
 
@@ -485,8 +458,8 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -7,     0,    -7,    -7,     7,    -7,    -3,     5,    -7,     4,
-       7,     7,    -7,     7,    -7,     5,     5,    -7
+       0,    -7,    -7,     0,    14,    11,     5,    -7,     0,     0,
+       0,     0,    -7,    -6,    -6,    -7,    -7
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -494,20 +467,20 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       2,     0,     1,    10,     0,     3,     0,     5,     8,     0,
-       0,     0,     4,     0,    11,     6,     7,     9
+       0,     8,     9,     0,     0,     2,     0,     1,     0,     0,
+       0,     0,     7,     3,     4,     5,     6
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -7,    -7,    -7,     9,    -6,     2
+      -7,    -7,    -3
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     1,     5,     6,     7,     8
+      -1,     4,     5
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -515,36 +488,34 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       2,    10,    11,     3,    15,    16,    12,     4,    10,    11,
-       3,    13,    14,     9,     4,    17
+       6,    10,    11,     1,     2,    13,    14,    15,    16,     3,
+       8,     9,    10,    11,     7,    12,     8,     9,    10,    11
 };
 
 static const yytype_uint8 yycheck[] =
 {
-       0,     4,     5,     3,    10,    11,     9,     7,     4,     5,
-       3,     6,     8,     4,     7,    13
+       3,     7,     8,     3,     4,     8,     9,    10,    11,     9,
+       5,     6,     7,     8,     0,    10,     5,     6,     7,     8
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,    11,     0,     3,     7,    12,    13,    14,    15,    13,
-       4,     5,     9,     6,     8,    14,    14,    15
+       0,     3,     4,     9,    12,    13,    13,     0,     5,     6,
+       7,     8,    10,    13,    13,    13,    13
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    10,    11,    11,    12,    13,    13,    13,    14,    14,
-      15,    15
+       0,    11,    12,    13,    13,    13,    13,    13,    13,    13
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     0,     2,     2,     1,     3,     3,     1,     3,
-       1,     3
+       0,     2,     1,     3,     3,     3,     3,     3,     1,     1
 };
 
 
@@ -1220,56 +1191,8 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 4:
-#line 30 "tree.y" /* yacc.c:1646  */
-    { printtree((yyvsp[-1])); printf("\n");}
-#line 1227 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 5:
-#line 32 "tree.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[0]);}
-#line 1233 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 6:
-#line 33 "tree.y" /* yacc.c:1646  */
-    {(yyval) = mknode((yyvsp[-2]), (yyvsp[0]), "+");}
-#line 1239 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 7:
-#line 34 "tree.y" /* yacc.c:1646  */
-    {(yyval) = mknode((yyvsp[-2]), (yyvsp[0]), "-");}
-#line 1245 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 8:
-#line 36 "tree.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[0]);}
-#line 1251 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 9:
-#line 37 "tree.y" /* yacc.c:1646  */
-    {(yyval) = mknode((yyvsp[-2]), (yyvsp[0]), "*");}
-#line 1257 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 10:
-#line 39 "tree.y" /* yacc.c:1646  */
-    {(yyval) = mknode(0,0,(char *)yylval);}
-#line 1263 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 11:
-#line 40 "tree.y" /* yacc.c:1646  */
-    {(yyval) = (yyvsp[-1]);}
-#line 1269 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-
-#line 1273 "y.tab.c" /* yacc.c:1646  */
+      
+#line 1196 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1497,38 +1420,20 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 42 "tree.y" /* yacc.c:1906  */
+#line 21 "arithematic.y" /* yacc.c:1906  */
 
 
-int main (void) 
+void main()
 {
-        printf("Enter the expression\n");
-	yyparse ( );
+	printf("\nEnter Expression:");
+	yyparse();
+	printf("\nValid");
+	exit(0);
 }
-node *mknode(node *left, node *right, char *token)
-{ /* malloc the node */
-	node *newnode = (node *)malloc(sizeof(node));
-	char *newstr = (char *)malloc(strlen(token)+1);
-	strcpy(newstr, token);
-	newnode->left = left;         
-	newnode->right = right;
-	newnode->token = newstr;
-	return(newnode);
+
+int yyerror(char *a)
+{	
+	printf("\nInvalid");
+	return(0);
+	exit(0);
 }
-void printtree(node *tree)
-{
-	int i;
-	if (tree->left || tree->right)
-		printf("(");
-		printf(" %s ", tree->token);
-	if (tree->left)
-		printtree(tree->left);
-	if (tree->right)
-		printtree(tree->right);
-	if (tree->left || tree->right)
-		printf(")");
-}
-int yyerror (char *s)
- {
-	fprintf (stderr, "%s\n", s);
- } 

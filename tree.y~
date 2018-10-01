@@ -41,6 +41,7 @@ factor : NUMBER 		{$$ = mknode(0,0,(char *)yylval);}
 	;
 %%
 
+#include "lex.yy.c"
 int main (void) 
 {
         printf("Enter the expression\n");
