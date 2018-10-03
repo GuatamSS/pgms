@@ -48,9 +48,9 @@ int main(){
 			int k=0;int l=0;int *q;
 			do{
 				printf("q%d----%s--->",i,inputsymbols[j]);
-				int *q=states[i].trans[j].tostate[k++][l++];
+				q=states[i].trans[j].tostate[k++][l++];
 				scanf("%d",&q);
-				//printf("%d",q);
+				printf("%d\n",q);
 			}while(q!=-1);
 		}
 
