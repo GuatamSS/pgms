@@ -51,6 +51,7 @@ int main(){
 				q=states[i].trans[j].tostate[k++][l++];
 				scanf("%d",&q);
 				printf("%d\n",q);
+				*(states[i].trans[j].tostate[k-1][l-1])=q;
 			}while(q!=-1);
 		}
 
