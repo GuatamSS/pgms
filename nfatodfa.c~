@@ -10,17 +10,18 @@ struct node{
 
 struct t{
 	int input;
-	int tostate[10][10];
+	int tostate[10];
 };
 struct State{
 	char name[20];
 	struct t trans[50];
+	int number_of_trans;
 };
 
 struct State states[50];
 
 char table[50][50];
-int n1,n2,i,j;
+int n1,n2,i,j,k;
 char inputsymbols[5][20];
 	
 int main(){
@@ -48,11 +49,12 @@ int main(){
 			int k=0;int l=0;int *q;
 			do{
 				printf("q%d----%s--->",i,inputsymbols[j]);
-				q=states[i].trans[j].tostate[k++][l++];
+				q=states[i].trans[j].tostate[k++];
 				scanf("%d",&q);
 				printf("%d\n",q);
-				*(states[i].trans[j].tostate[k-1][l-1])=q;
+				states[i].trans[j].tostate[k-1]=q;
 			}while(q!=-1);
+			states[i].number_of_trans=k;
 		}
 
 	}
@@ -67,8 +69,9 @@ printtable(){
 	for (i=0;i<n1;i++){
 		printf("%d\t",i);
 		for(j=0;j<n2;j++){
-			int k=0;
-			printf("%d\t",states[i].trans[j].tostate[k++][0]);
+			for(k=0;k<states[i].number_of_trans;k++){
+				printf("%d\t",states[i].trans[j].tostate[k]);
+			}
 		}
 		printf("\n");
 	}
