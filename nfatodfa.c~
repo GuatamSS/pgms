@@ -34,10 +34,15 @@ int main(){
 	scanf("%d",&n2);
 
 	//Read input symbols
-	for(i=0;i<n2;i++){
+	i=0;
+	while(i<n2){
 		printf("Enter the input %d",i+1);
 		scanf("%s",inputsymbols[i]);
+		i++;
 	}
+	n2++;
+	strcpy(inputsymbols[i],"e");
+
 
 
 	for(i=0;i<n1;i++){
