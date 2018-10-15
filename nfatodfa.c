@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
 #include<string.h>
+#include<stdlib.h>
 
 
 struct node{
@@ -32,11 +33,11 @@ int stack1 [50],stack2[50];
 
 void push1(int n){
 	if(top1<50)
-		stack1[top1++]=n;
+		stack1[++top1]=n;
 }
 void push2(int n){
 	if(top2<50)
-		stack2[top2++]=n;
+		stack2[++top2]=n;
 }
 
 int pop1(){
@@ -60,16 +61,38 @@ int* move(int s,int input){
 }
 	
 
-/*
-struct State * epsilon_closure(struct State k){
-	int i;
-	struct State p[50];
-	for(i=0;i<n1;i++){
-		push1(i);
+
+int* epsilon_closure(int s){
+	int i,j,p,ctop;
+	top1=0;
+	int* c=malloc(sizeof(int)*50);
+	//for(i=0;i<n1;i++){
+		push1(s);
+	//}
+	/*for(i=0;i<n1;i++){
+		c[i]=i;
+	}*/
+	c[0]=s;ctop=1;
+	while(top1!=-1){//printf("-----------------------------------------\n");
+		int j=pop1();
+		for(p=0;p<states[j].trans[n2-1].number_of_trans;p++){//printf("---------------%d----%d----\n",j,n2-1);
+			int flag=0;
+			for (i=0;i<ctop;i++){//printf("---mov--%d,--\n",move(j,n2-1)[p]);
+				if(c[i]==move(j,n2-1)[p]){
+					flag=1;
+				}
+			}
+			if(flag==0){
+				push1(move(j,n2-1)[p]);//printf("---f=0 mov--%d,--\n",move(j,n2-1)[p]);
+				c[ctop]=move(j,n2-1)[p];ctop++;//printf("---ctop--%d,--\n",ctop);
+			}//printf("------------%d----%d----\n",j,n2-1);
+		}//printf("---------------------------------------\n");
 	}
-	while(top1!=-1){
-		
-	
+	c[ctop++]=-1;
+	return c;
+}
+
+/*
     Stack P.addAll(S) #a stack containing all states in S
     Set C.addAll(S)   #the closure initially contains the states in S
 
@@ -85,8 +108,8 @@ struct State * epsilon_closure(struct State k){
 
     end while
     return C
-}
 */
+
 
 
 int main(){
@@ -136,6 +159,11 @@ int main(){
 	int p=0;
 	for(p=0;p<states[0].trans[2].number_of_trans;p++){
 		printf("%d--",move(0,2)[p]);
+	}
+	p=0;
+	while(epsilon_closure(0)[p]!=-1){
+		printf("Epsilon closure %d\n",epsilon_closure(0)[p]);
+		p++;
 	}
 }
 printtable(){
