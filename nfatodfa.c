@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdbool.h>
+#include<string.h>
 
 
 struct node{
@@ -11,11 +12,11 @@ struct node{
 struct t{
 	int input;
 	int tostate[10];
+	int number_of_trans;
 };
 struct State{
 	char name[20];
 	struct t trans[50];
-	int number_of_trans;
 };
 
 struct State states[50];
@@ -46,15 +47,18 @@ int main(){
 	//
 	for (i=0;i<n1;i++){
 		for(j=0;j<n2;j++){
-			int k=0;int l=0;int *q;
+			int k=0;int l=0;int q;
 			do{
 				printf("q%d----%s--->",i,inputsymbols[j]);
-				q=states[i].trans[j].tostate[k++];
+				q=states[i].trans[j].tostate[k];
 				scanf("%d",&q);
 				printf("%d\n",q);
-				states[i].trans[j].tostate[k-1]=q;
+				if(q!=-1){
+					states[i].trans[j].tostate[k]=q;
+					k++;
+				}
 			}while(q!=-1);
-			states[i].number_of_trans=k;
+			states[i].trans[j].number_of_trans=k;
 		}
 
 	}
@@ -69,12 +73,12 @@ printtable(){
 	for (i=0;i<n1;i++){
 		printf("%d\t",i);
 		for(j=0;j<n2;j++){
-			for(k=0;k<states[i].number_of_trans;k++){
-				printf("%d\t",states[i].trans[j].tostate[k]);
+			for(k=0;k<states[i].trans[j].number_of_trans;k++){
+				printf("%d,",states[i].trans[j].tostate[k]);
 			}
+			printf("\t");
 		}
 		printf("\n");
 	}
 }
-	
 
