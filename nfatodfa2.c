@@ -1,7 +1,6 @@
 //**************************************
 // Name: NFA to DFA Conversion
 // Description:It is a program for NFA ( Non-deterministic Finite Automata) to DFA (Deterministic Finite Auctomata ) Conversion using the Subset Construction Algorithm.
-// By: Ritin (from psc cd)
 //
 // Inputs:NFA states, inputs, transitions
 //
