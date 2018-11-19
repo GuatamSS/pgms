@@ -1,17 +1,22 @@
 #include<stdio.h>
 #include<string.h>
 
+char first[10];
+char follow[10];
+
 char p[10][10];
+int q=0;
 char first(char a[]){
 	if(islower(a)){
-		return a;
-	}
-	for(i=0;i<num;i++){
-		if(a==p[i][0]){
-			if(islower(p[i][2]){
-				//Add to first(a)
-			}else{
-				//calculate first(A) add it to First a
+		first[q++]=a;
+	}else{
+		for(i=0;i<num;i++){
+			if(a==p[i][0]){
+				if(islower(p[i][2]){
+				
+				}else{
+					//calculate first(A) add it to First a
+				}
 			}
 		}
 	}
